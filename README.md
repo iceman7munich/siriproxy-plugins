@@ -35,12 +35,14 @@ Notice d'installation
 Remerciements
 --------------
 Merci à tous ceux qui ont participé au développement de [SiriProxy](https://github.com/plamoni/SiriProxy) et dérivés.
+
 Merci aussi à [GregTheHacker](http://siri.0rg.fr/) pour m'avoir donné accès à son serveur pour développer et tester mes plugins.
 
 Dons
 ----
 
 Si vous avez envie de voir plus de documentations, plus de plugins, vous pouvez me motiver en cliquant sur le bouton ci-dessous.
+
 Evidemment, un don n'est et ne sera jamais obligatoire, j'écouterai vos suggestions pour de nouveaux plugins avec ou sans.
 
 [<img alt="" src="https://www.paypalobjects.com/fr_FR/BE/i/btn/btn_donate_LG.gif">](http://cedbv.be/paypalsiriproxy)

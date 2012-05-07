@@ -49,7 +49,7 @@ class SiriProxy::Plugin::Blagues < SiriProxy::Plugin
 			dtc = liste[rand].strip
 			say dtc
 		#rescue
-		#	say "Chuck Norris n'a pas besoin d'une liste de blague pour être drôle. C'est la liste des blagues qui a besoin de Chuck Norris."
+		#	say "Chuck Norris n'a pas besoin d'une liste de blagues pour être drôle. C'est la liste des blagues qui a besoin de Chuck Norris."
 		#end
 		request_completed
 	end

@@ -35,7 +35,7 @@ class SiriProxy::Plugin::Blagues < SiriProxy::Plugin
 			dtc = dtc.slice(0..dtc.index("--")-1)
 			say dtc
 		rescue
-			say "Désolé, je n'ai trouvé la liste des blagues. Pourtant, j'ai bien cherché dans ton chat."
+			say "Désolé, je n'ai pas trouvé la liste des blagues. Pourtant, j'ai bien cherché dans ton chat."
 		end
 		request_completed
 	end

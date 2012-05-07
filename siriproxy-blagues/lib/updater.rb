@@ -1,7 +1,9 @@
 # -*- encoding : utf-8 -*-
 require 'pp'
-require 'net/http'
+require 'rubygems'
+require 'httparty'
 require 'pathname'
+require 'iconv'
 
 def updateFiles(dir, override)
 	begin
@@ -14,11 +16,9 @@ def updateFiles(dir, override)
 	
 	if !File.exists?(file_dtc) or override
 		puts "Downloading Danstonchat.com's fortunes..."
-		Net::HTTP.start("danstonchat.com") do |http|
-			resp = http.get("/fortunes")
-			open(file_dtc, "wb") do |file|
-				file.write(resp.body)
-			end
+		content = HTTParty.get("http://danstonchat.com/fortunes")
+		open(file_dtc, "wb:UTF-8") do |file|
+			file.write(content)
 		end
 		puts "Done."
 	else
@@ -27,11 +27,9 @@ def updateFiles(dir, override)
 	
 	if !File.exists?(file_cn) or override
 		puts "Downloading Chuck Norris's fortunes..."
-		Net::HTTP.start("chucknorrisfacts.fr") do |http|
-			resp = http.get("/fortunes/fortunes.txt")
-			open(file_cn, "wb") do |file|
-				file.write(resp.body)
-			end
+		content = HTTParty.get("http://chucknorrisfacts.fr/fortunes/fortunes.txt");
+		open(file_cn, "wb:UTF-8") do |file|
+			file.write(content)
 		end
 		puts "Done."
 	else

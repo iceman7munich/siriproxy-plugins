@@ -28,7 +28,7 @@ def updateFiles(dir, override)
 	if !File.exists?(file_cn) or override
 		puts "Downloading Chuck Norris's fortunes..."
 		content = HTTParty.get("http://chucknorrisfacts.fr/fortunes/fortunes.txt");
-		open(file_cn, "wb:UTF-8") do |file|
+		open(file_cn, "wb") do |file|
 			file.write(content)
 		end
 		puts "Done."

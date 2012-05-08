@@ -42,7 +42,7 @@ class SiriProxy::Plugin::Blagues < SiriProxy::Plugin
 	
 	listen_for /chuck norris/i do
 		begin
-			file = File.open(@dir+"/fortunes-cn", "r:UTF-8")
+			file = File.open(@dir+"/fortunes-cn", "r")
 			contents = file.read
 			liste = contents.split('%')
 			rand = rand(liste.length-1)
@@ -53,5 +53,5 @@ class SiriProxy::Plugin::Blagues < SiriProxy::Plugin
 		end
 		request_completed
 	end
-	
+
 end

@@ -8,6 +8,7 @@ Mes plugins sont distribués sous licence [Creative Commons Attribution-NonComme
 Pour un usage qui n'est pas inclus dans cette licence ou pour de l'aide concernant l'installation ou la personnalisation d'un plugin, vous pouvez [me contacter](http://blog.boverie.eu/contact/).
 
 La licence commerciale inclus également un plugin pour poster des messages sur Twitter et Facebook compatibles avec les serveurs publiques (multi-utilisateurs).
+Quelques soucis actuellement avec le plugin, il sera disponible prochainenement...
 
 Notice d'installation
 ---------------------

@@ -2,15 +2,15 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
-  s.name        = "siriproxy-wolfram"
+  s.name        = "siriproxy-actualite"
   s.version     = "0.1" 
   s.authors     = ["cedbv"]
   s.email       = [""]
   s.homepage    = ""
-  s.summary     = %q{Wolfram Alpha}
-  s.description = %q{Wolfram Alpha}
+  s.summary     = %q{Actualité}
+  s.description = %q{Actualité importante nationale avec Google News}
 
-  s.rubyforge_project = "siriproxy-wolfram"
+  s.rubyforge_project = "siriproxy-actualite"
 
   s.files         = `git ls-files 2> /dev/null`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/* 2> /dev/null`.split("\n")

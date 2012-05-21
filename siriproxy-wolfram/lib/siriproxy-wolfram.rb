@@ -16,7 +16,7 @@ class SiriProxy::Plugin::Wolfram < SiriProxy::Plugin
 	listen_for /(Wolfram |Qui est |Combien de |Qu..tais |Combien de temps |Combien font |A quelle distance |Quand est |Montre moi |a quelle hauteur |a quelle profondeur |Quelle est |Quel est |Que vaux |Que vaut )(.*)/i do |question,query|
 
 		#wolframQuestion = query.sub("+","%2B").sub("d'","").sub("l'","").sub("le ","").sub("la ","").sub("les ","").sub("un ","").sub("une ","").sub("de ","").sub("du ","").sub("des ","")
-		wolframQuestion = query.sub(" plus "," + ").sub("+","%2B")
+		wolframQuestion = query.sub(" plus "," + ")
 
 		begin
 			uri = "http://api.bing.net/json.aspx?Query=#{URI.encode(wolframQuestion)}&Translation.SourceLanguage=fr&Translation.TargetLanguage=en&Version=2.2&AppId=#{@bingtranslation}&Sources=Translation" 
@@ -26,7 +26,7 @@ class SiriProxy::Plugin::Wolfram < SiriProxy::Plugin
 			traduction = wolframQuestion
 		end
 
-		
+		traduction = traduction.sub("+","%2B")
 		url = "http://api.wolframalpha.com/v1/query.jsp?input=#{URI.encode(traduction)}&appid=#{URI.encode(@apikey)}&translation=true"
 		page = Net::HTTP.get(URI.parse(url))
 		doc = Document.new(page)
@@ -40,10 +40,10 @@ class SiriProxy::Plugin::Wolfram < SiriProxy::Plugin
 					pod.elements.each("subpod") do |subpod|			
 						plaintext = subpod.elements["plaintext"].text
 						image = subpod.elements["img"].attributes["src"]
-						if plaintext.nil?
-							answers.push(SiriAnswer.new(title, [SiriAnswerLine.new("logo",image)]))
-						else
+						if image.nil?
 							answers.push(SiriAnswer.new(title, [SiriAnswerLine.new(plaintext)]))
+						else
+							answers.push(SiriAnswer.new(title, [SiriAnswerLine.new("logo",image)]))
 						end
 					end
 				end

@@ -14,6 +14,20 @@ class SiriProxy::Plugin::Blagues < SiriProxy::Plugin
 		format :xml
 	end
 	
+	listen_for /(raconte|dis|dit) une blague/i do |ph|
+		begin
+			file = File.open(@dir+"/blagues", "r:UTF-8")
+			contents = file.read
+			liste = contents.split('%')
+			rand = rand(liste.length-1)
+			blague = liste[rand].strip
+			say blague
+		rescue
+			say "C'est l'histoire de..."
+		end
+		request_completed
+	end
+	
 	listen_for /vie de merde/i do
 		uri = "http://www.vdm-iphone.com/v8/fr/random.php?cat=all&num_page=0"
 		vdm = VieDeMerde.get(uri)

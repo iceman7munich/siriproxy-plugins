@@ -13,13 +13,13 @@ class SiriProxy::Plugin::Wolfram < SiriProxy::Plugin
 		@bingtranslation = config["api_bingtranslation"]
 	end
   
-	listen_for /(Wolfram |Qui est |Combien de |Qu..tais |Combien de temps |Combien font |A quelle distance |Quand est |Montre moi |a quelle hauteur |a quelle profondeur |Quelle est |Quel est |Que vaux |Que vaut )(.*)/i do |question,query|
+	listen_for /(Wolfram |Die |Wie viele von |Qu..tais |Wie lange|Wie viele sind |Welche Entfernung|Wenn ist |Montre moi |Hoehe |wurde wie tief |was ist |Que vaux |Wie viel Wert ist)(.*)/i do |question,query|
 
 		#wolframQuestion = query.sub("+","%2B").sub("d'","").sub("l'","").sub("le ","").sub("la ","").sub("les ","").sub("un ","").sub("une ","").sub("de ","").sub("du ","").sub("des ","")
 		wolframQuestion = query.sub(" plus "," + ")
 
 		begin
-			uri = "http://api.bing.net/json.aspx?Query=#{URI.encode(wolframQuestion)}&Translation.SourceLanguage=fr&Translation.TargetLanguage=en&Version=2.2&AppId=#{@bingtranslation}&Sources=Translation" 
+			uri = "http://api.bing.net/json.aspx?Query=#{URI.encode(wolframQuestion)}&Translation.SourceLanguage=de&Translation.TargetLanguage=en&Version=2.2&AppId=#{@bingtranslation}&Sources=Translation" 
 			response = HTTParty.get(uri)
 			traduction = response["SearchResponse"]["Translation"]["Results"][0]["TranslatedTerm"]
 		rescue
@@ -32,7 +32,7 @@ class SiriProxy::Plugin::Wolfram < SiriProxy::Plugin
 		doc = Document.new(page)
 		
 		if doc.root.attributes["success"] == "true"
-			say "Cela pourrait répondre à votre question : "
+			say "Dies ist Ihre Antwort: "
 			answers = []
 			doc.elements.each("queryresult") do |node|
 				node.elements.each("pod") do |pod|		
@@ -54,7 +54,7 @@ class SiriProxy::Plugin::Wolfram < SiriProxy::Plugin
 			send_object view
 
 		else
-			say "Je n'ai trouvé aucune réponse à votre question !"
+			say "Ich habe keine Antwort auf deine Frage gefunden!"
 		end
 		request_completed
 	end

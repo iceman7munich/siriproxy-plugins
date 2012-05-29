@@ -5,6 +5,7 @@ require 'pp'
 require 'json'
 require 'httparty'
 require 'rexml/document'
+require 'nokogiri'
 include REXML
 
 class SiriProxy::Plugin::Wolfram < SiriProxy::Plugin
